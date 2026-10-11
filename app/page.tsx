@@ -496,7 +496,7 @@ export default function Home() {
       let clienteId = clienteSeleccionadoId;
       if (!clienteId) {
         const { data: cliNuevo, error: errCli } = await supabase.from('clientes').insert([{
-          razon_social: razonSocial, rut_nit: rutRut, contacto_nombre: contacto, correo, telefono
+          razon_social: razonSocial, rut_nit: rutNit, contacto_nombre: contacto, correo, telefono
         }]).select().single();
         if (errCli) throw errCli;
         clienteId = cliNuevo.id;
