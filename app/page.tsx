@@ -479,7 +479,7 @@ export default function Home() {
     setItemsCotizacion(itemsCotizacion.filter((_, i) => i !== index));
   };
 
-  const subtotalItems = itemsCotizacion.reduce((acc, item) => acc + item.precio_total_linea, 0);
+  const subtotalItems = itemsCotizacion.reduce((acc, item) => acc + (item.precio_total_linea || 0), 0);
   const montoDescuentoGlobal = subtotalItems * (porcentajeDescuentoGlobal / 100);
   const subtotalConDescuento = subtotalItems - montoDescuentoGlobal;
   const montoIva = aplicarIva ? subtotalConDescuento * 0.19 : 0;
@@ -1206,8 +1206,8 @@ export default function Home() {
                     <tr key={idx} style={{ borderBottom: '1px solid #eee' }}>
                       <td style={{ padding: '8px' }}>{it.descripcion_item}</td>
                       <td style={{ padding: '8px', textAlign: 'center' }}>{it.cantidad}</td>
-                      <td style={{ padding: '10px', textAlign: 'right' }}>${it.precio_total_linea.toLocaleString()}</td>
-                      <td style={{ padding: '8px', textAlign: 'center' }}><button onClick={() => eliminarItem(idx)} style={{ background: '#d9534f', color: '#fff', border: 'none', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer' }}>X</button></td>
+                      <td style={{ padding: '10px', textAlign: 'right' }}>${(it.precio_total_linea || 0).toLocaleString()}</td>
+                      <td style={{ padding: '8px', textAlign: 'center' }}><button onClick={() => eliminarItem(idx)} style={{ background: '#d9534f', color: '#fff', border: 'none', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer' }}>Eliminar</button></td>
                     </tr>
                   ))}
                 </tbody>
